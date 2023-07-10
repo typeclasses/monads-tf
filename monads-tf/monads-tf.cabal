@@ -5,7 +5,8 @@ version:      0.2.0.0
 license:      BSD-3-Clause
 license-file: LICENSE
 author:       Andy Gill
-maintainer:   Ross Paterson <ross@soi.city.ac.uk>
+maintainer:   Ross Paterson <ross@soi.city.ac.uk>,
+              Chris Martin <chris@typeclasses.com>
 category:     Control
 synopsis:     Monad classes, using type families
 description:
