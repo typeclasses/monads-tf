@@ -9,6 +9,7 @@ maintainer:   Ross Paterson <ross@soi.city.ac.uk>,
               Chris Martin <chris@typeclasses.com>
 category:     Control
 synopsis:     Monad classes, using type families
+homepage:     https://github.com/typeclasses/monads-tf
 description:
     Monad classes using type families, with instances for
     various monad transformers.
