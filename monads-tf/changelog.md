@@ -1,3 +1,7 @@
+## 0.2.0.0
+
+Deprecated module `Control.Monad.List`
+
 ## 0.1.0.3
 
 Published by: Ross Paterson

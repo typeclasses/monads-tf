@@ -13,7 +13,9 @@
 --
 -----------------------------------------------------------------------------
 
-module Control.Monad.List (
+module Control.Monad.List
+  {-# DEPRECATED "This transformer is invalid on most monads" #-}
+  (
     ListT(..),
     mapListT,
     module Control.Monad,
