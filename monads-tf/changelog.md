@@ -10,6 +10,12 @@ modules, following what `transformers-0.4.0.0` did.
 Deprecated module `Control.Monad.List`, following what
 `transformers-0.5.3.0` did.
 
+Contributors: Ross Paterson and Chris Martin
+
+Published by: Chris Martin
+
+Date: 2023-07-10
+
 ## 0.1.0.3
 
 Published by: Ross Paterson
