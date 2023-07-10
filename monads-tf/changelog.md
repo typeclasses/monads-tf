@@ -1,3 +1,12 @@
+## 0.2.1.0
+
+Add `MonadCont`, `MonadReader`, `MonadState`, `MonadRWS`,
+`MonadWriter` instances for `ExceptT`.
+
+Published by: Chris Martin
+
+Date: 2023-07-10
+
 ## 0.2.0.0
 
 Added new modules `Control.Monad.Except` and

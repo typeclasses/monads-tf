@@ -28,6 +28,7 @@ module Control.Monad.State.Class (
 import Control.Monad.Trans (lift)
 import Control.Monad.Trans.Cont
 import Control.Monad.Trans.Error
+import Control.Monad.Trans.Except
 import Control.Monad.Trans.Identity
 import Control.Monad.Trans.List
 import Control.Monad.Trans.Maybe
@@ -104,6 +105,11 @@ instance (MonadState m) => MonadState (ContT r m) where
 
 instance (Error e, MonadState m) => MonadState (ErrorT e m) where
     type StateType (ErrorT e m) = StateType m
+    get = lift get
+    put = lift . put
+
+instance (MonadState m) => MonadState (ExceptT e m) where
+    type StateType (ExceptT e m) = StateType m
     get = lift get
     put = lift . put
 

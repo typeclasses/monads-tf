@@ -25,6 +25,7 @@ module Control.Monad.Writer.Class (
   ) where
 
 import Control.Monad.Trans.Error as Error
+import Control.Monad.Trans.Except as Except
 import Control.Monad.Trans.Identity as Identity
 import Control.Monad.Trans.Maybe as Maybe
 import Control.Monad.Trans.Reader
@@ -100,6 +101,12 @@ instance (Error e, MonadWriter m) => MonadWriter (ErrorT e m) where
     tell   = lift . tell
     listen = Error.liftListen listen
     pass   = Error.liftPass pass
+
+instance (MonadWriter m) => MonadWriter (ExceptT e m) where
+    type WriterType (ExceptT e m) = WriterType m
+    tell   = lift . tell
+    listen = Except.liftListen listen
+    pass   = Except.liftPass pass
 
 instance (MonadWriter m) => MonadWriter (IdentityT m) where
     type WriterType (IdentityT m) = WriterType m
