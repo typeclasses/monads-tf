@@ -18,6 +18,7 @@ extra-source-files: *.md
 
 library
   exposed-modules:
+    Control.Monad.Accum
     Control.Monad.Cont
     Control.Monad.Cont.Class
     Control.Monad.Except
