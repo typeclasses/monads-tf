@@ -1,3 +1,13 @@
+## 0.3.0.1
+
+Documentation improvements
+
+Author: Ross Paterson
+
+Published by: Chris Martin
+
+Date: 2023-07-10
+
 ## 0.3.0.0
 
 Remove deprecated modules:
