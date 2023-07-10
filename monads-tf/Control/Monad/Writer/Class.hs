@@ -42,27 +42,38 @@ import Control.Monad.Trans (lift)
 
 -- ---------------------------------------------------------------------------
 -- MonadWriter class
---
--- tell is like tell on the MUD's it shouts to monad
--- what you want to be heard. The monad carries this 'packet'
--- upwards, merging it if needed (hence the Monoid requirement).
---
--- listen listens to a monad acting, and returns what the monad "said".
---
--- pass lets you provide a writer transformer which changes internals of
--- the written object.
 
 class (Monoid (WriterType m), Monad m) => MonadWriter m where
     type WriterType m
+
+    -- | Shout to the monad what you want to be heard. The monad carries
+    -- this packet upwards, merging it if needed (hence the 'Monoid'
+    -- requirement).
     tell   :: WriterType m -> m ()
+
+    -- | Listen to a monad acting, and return what the monad "said".
     listen :: m a -> m (a, WriterType m)
+
+    -- | Provide a writer transformer which changes internals of the
+    -- written object.
     pass   :: m (a, WriterType m -> WriterType m) -> m a
 
+-- | @'listens' f m@ is an action that executes the action @m@ and adds
+-- the result of applying @f@ to the output to the value of the computation.
+--
+-- * @'listens' f m = 'liftM' (id *** f) ('listen' m)@
+--
 listens :: (MonadWriter m) => (WriterType m -> b) -> m a -> m (a, b)
 listens f m = do
     ~(a, w) <- listen m
     return (a, f w)
 
+-- | @'censor' f m@ is an action that executes the action @m@ and
+-- applies the function @f@ to its output, leaving the return value
+-- unchanged.
+--
+-- * @'censor' f m = 'pass' ('liftM' (\\ x -> (x,f)) m)@
+--
 censor :: (MonadWriter m) => (WriterType m -> WriterType m) -> m a -> m a
 censor f m = pass $ do
     a <- m
