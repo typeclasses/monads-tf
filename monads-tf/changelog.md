@@ -1,9 +1,14 @@
 ## 0.2.0.0
 
-Added new modules `Control.Monad.Except`
-and `Control.Monad.Except.Class`
+Added new modules `Control.Monad.Except` and
+`Control.Monad.Except.Class`
 
-Deprecated module `Control.Monad.List`
+Deprecated modules `Control.Monad.Error` and
+`Control.Monad.Error.Class` in favor of the new `Except`
+modules, following what `transformers-0.4.0.0` did.
+
+Deprecated module `Control.Monad.List`, following what
+`transformers-0.5.3.0` did.
 
 ## 0.1.0.3
 

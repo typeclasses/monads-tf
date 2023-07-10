@@ -31,7 +31,9 @@ The Error monad (also called the Exception monad).
   inspired by the Haskell Monad Template Library from
     Andy Gill (<http://web.cecs.pdx.edu/~andy/>)
 -}
-module Control.Monad.Error.Class (
+module Control.Monad.Error.Class
+  {-# DEPRECATED "Use Control.Monad.Except.Class instead" #-}
+  (
     Error(..),
     MonadError(..),
   ) where
