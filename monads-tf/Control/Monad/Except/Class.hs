@@ -38,7 +38,6 @@ module Control.Monad.Except.Class (
 import Control.Monad.Trans.Except (ExceptT)
 import qualified Control.Monad.Trans.Except as ExceptT (throwE, catchE)
 import Control.Monad.Trans.Identity as Identity
-import Control.Monad.Trans.List as List
 import Control.Monad.Trans.Maybe as Maybe
 import Control.Monad.Trans.Reader as Reader
 import Control.Monad.Trans.RWS.Lazy as LazyRWS

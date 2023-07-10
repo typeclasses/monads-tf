@@ -1,3 +1,17 @@
+## 0.3.0.0
+
+Remove deprecated modules:
+
+* `Control.Monad.Error`
+* `Control.Monad.Error.Class`
+* `Control.Monad.List`
+
+Add support for `transformers-0.6.*`
+
+Published by: Chris Martin
+
+Date: 2023-07-10
+
 ## 0.2.1.0
 
 Add `MonadCont`, `MonadReader`, `MonadState`, `MonadRWS`,

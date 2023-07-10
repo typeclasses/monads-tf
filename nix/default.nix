@@ -28,7 +28,7 @@ let
       ghc-9-6 = makeTestConfiguration {
         ghc = pkgs.haskell.packages.ghc96;
         overrides = new: old: {
-          transformers = new.callHackage "transformers" "0.5.6.2" { };
+          # transformers = new.callHackage "transformers" "0.5.6.2" { };
         };
       };
       all = pkgs.symlinkJoin {

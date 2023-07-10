@@ -24,7 +24,6 @@ module Control.Monad.Writer.Class (
     censor,
   ) where
 
-import Control.Monad.Trans.Error as Error
 import Control.Monad.Trans.Except as Except
 import Control.Monad.Trans.Identity as Identity
 import Control.Monad.Trans.Maybe as Maybe
@@ -95,12 +94,6 @@ instance (Monoid w, Monad m) => MonadWriter (StrictRWS.RWST r w s m) where
 
 -- ---------------------------------------------------------------------------
 -- Instances for other mtl transformers
-
-instance (Error e, MonadWriter m) => MonadWriter (ErrorT e m) where
-    type WriterType (ErrorT e m) = WriterType m
-    tell   = lift . tell
-    listen = Error.liftListen listen
-    pass   = Error.liftPass pass
 
 instance (MonadWriter m) => MonadWriter (ExceptT e m) where
     type WriterType (ExceptT e m) = WriterType m

@@ -41,10 +41,8 @@ module Control.Monad.Reader.Class (
     ) where
 
 import Control.Monad.Trans.Cont as Cont
-import Control.Monad.Trans.Error
 import Control.Monad.Trans.Except
 import Control.Monad.Trans.Identity
-import Control.Monad.Trans.List
 import Control.Monad.Trans.Maybe
 import Control.Monad.Trans.Reader (ReaderT)
 import qualified Control.Monad.Trans.Reader as ReaderT (ask, local)
@@ -114,11 +112,6 @@ instance (MonadReader m) => MonadReader (ContT r m) where
     ask   = lift ask
     local = Cont.liftLocal ask local
 
-instance (Error e, MonadReader m) => MonadReader (ErrorT e m) where
-    type EnvType (ErrorT e m) = EnvType m
-    ask   = lift ask
-    local = mapErrorT . local
-
 instance (MonadReader m) => MonadReader (ExceptT e m) where
     type EnvType (ExceptT e m) = EnvType m
     ask   = lift ask
@@ -128,11 +121,6 @@ instance (MonadReader m) => MonadReader (IdentityT m) where
     type EnvType (IdentityT m) = EnvType m
     ask   = lift ask
     local = mapIdentityT . local
-
-instance (MonadReader m) => MonadReader (ListT m) where
-    type EnvType (ListT m) = EnvType m
-    ask   = lift ask
-    local = mapListT . local
 
 instance (MonadReader m) => MonadReader (MaybeT m) where
     type EnvType (MaybeT m) = EnvType m

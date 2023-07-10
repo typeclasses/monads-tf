@@ -30,7 +30,6 @@ import Control.Monad.Reader.Class
 import Control.Monad.State.Class
 import Control.Monad.Writer.Class
 
-import Control.Monad.Trans.Error(Error, ErrorT)
 import Control.Monad.Trans.Except(ExceptT)
 import Control.Monad.Trans.Maybe(MaybeT)
 import Control.Monad.Trans.Identity(IdentityT)
@@ -46,8 +45,6 @@ instance (Monoid w, Monad m) => MonadRWS (Strict.RWST r w s m)
 
 ---------------------------------------------------------------------------
 -- Instances for other mtl transformers
-
-instance (Error e, MonadRWS m) => MonadRWS (ErrorT e m)
 
 instance (MonadRWS m) => MonadRWS (ExceptT e m)
 
