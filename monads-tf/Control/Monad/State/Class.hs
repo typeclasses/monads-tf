@@ -39,8 +39,6 @@ import qualified Control.Monad.Trans.State.Strict as Strict (StateT, get, put)
 import Control.Monad.Trans.Writer.Lazy as Lazy
 import Control.Monad.Trans.Writer.Strict as Strict
 
-import Data.Monoid
-
 -- ---------------------------------------------------------------------------
 -- | /get/ returns the state from the internals of the monad.
 --

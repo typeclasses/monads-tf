@@ -1,4 +1,3 @@
-{-# LANGUAGE CPP #-}
 {- |
 Module      :  Control.Monad.Error
 Copyright   :  (c) Michael Weber <michael.weber@post.rwth-aachen.de> 2001,
@@ -55,9 +54,6 @@ import Control.Monad.Trans.Error (ErrorT(..), mapErrorT)
 
 import Control.Monad
 import Control.Monad.Fix
-#if !(MIN_VERSION_base(4,6,0))
-import Control.Monad.Instances ()  -- deprecated from base-4.6
-#endif
 
 {- $customErrorExample
 Here is an example that demonstrates the use of a custom 'Error' data type with

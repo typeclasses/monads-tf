@@ -1,4 +1,3 @@
-{-# LANGUAGE CPP #-}
 {- |
 Module      :  Control.Monad.Error.Class
 Copyright   :  (c) Michael Weber <michael.weber@post.rwth-aachen.de> 2001,
@@ -52,11 +51,6 @@ import Control.Monad.Trans.Writer.Strict as StrictWriter
 import Control.Monad.Trans
 
 import qualified Control.Exception
-#if !(MIN_VERSION_base(4,6,0))
-import Control.Monad.Instances ()  -- deprecated from base-4.6
-#endif
-import Data.Monoid
-import System.IO
 
 {- |
 The strategy of combining computations that can throw exceptions

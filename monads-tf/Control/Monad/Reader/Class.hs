@@ -55,8 +55,6 @@ import Control.Monad.Trans.Writer.Lazy as Lazy
 import Control.Monad.Trans.Writer.Strict as Strict
 import Control.Monad.Trans
 
-import Data.Monoid
-
 -- ----------------------------------------------------------------------------
 -- class MonadReader
 --  asks for the internal (non-mutable) state.

@@ -36,20 +36,18 @@ import Control.Monad.Trans.Identity(IdentityT)
 import Control.Monad.Trans.RWS.Lazy as Lazy (RWST)
 import qualified Control.Monad.Trans.RWS.Strict as Strict (RWST)
 
-import Data.Monoid
-
 class (Monoid (WriterType m), MonadReader m, MonadWriter m, MonadState m) =>
     MonadRWS m
 
 instance (Monoid w, Monad m) => MonadRWS (Lazy.RWST r w s m)
 
 instance (Monoid w, Monad m) => MonadRWS (Strict.RWST r w s m)
- 
+
 ---------------------------------------------------------------------------
 -- Instances for other mtl transformers
- 
+
 instance (Error e, MonadRWS m) => MonadRWS (ErrorT e m)
- 
+
 instance (MonadRWS m) => MonadRWS (IdentityT m)
- 
+
 instance (MonadRWS m) => MonadRWS (MaybeT m)

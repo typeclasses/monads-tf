@@ -66,8 +66,6 @@ import Control.Monad.Trans.State.Strict as StrictState
 import Control.Monad.Trans.Writer.Lazy as LazyWriter
 import Control.Monad.Trans.Writer.Strict as StrictWriter
 
-import Data.Monoid
-
 class (Monad m) => MonadCont m where
     {- | @callCC@ (call-with-current-continuation)
     calls a function with the current continuation as its argument.

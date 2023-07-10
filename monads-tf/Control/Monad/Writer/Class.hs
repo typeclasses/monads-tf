@@ -40,8 +40,6 @@ import qualified Control.Monad.Trans.Writer.Strict as Strict (
         WriterT, tell, listen, pass)
 import Control.Monad.Trans (lift)
 
-import Data.Monoid
-
 -- ---------------------------------------------------------------------------
 -- MonadWriter class
 --
