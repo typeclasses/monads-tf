@@ -1,0 +1,23 @@
+cabal-version: 3.0
+
+name: demo
+version: 0
+
+common base
+  default-language: GHC2021
+  ghc-options: -Wall
+  build-depends:
+    , base ^>= 4.16 || ^>= 4.17 || ^>= 4.18
+    , monads-tf
+  default-extensions:
+    TypeFamilies
+
+executable demo-except-1
+  import: base
+  hs-source-dirs: except-1
+  main-is: Main.hs
+
+executable demo-except-2
+  import: base
+  hs-source-dirs: except-2
+  main-is: Main.hs

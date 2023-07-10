@@ -1,5 +1,8 @@
 ## 0.2.0.0
 
+Added new modules `Control.Monad.Except`
+and `Control.Monad.Except.Class`
+
 Deprecated module `Control.Monad.List`
 
 ## 0.1.0.3
