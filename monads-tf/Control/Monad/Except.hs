@@ -34,10 +34,13 @@ The Error monad (also called the Exception monad).
 module Control.Monad.Except (
     -- * Monads with error handling
     MonadError(..),
+    tryError,
+    withError,
     -- * The ErrorT monad transformer
     ExceptT(..),
     runExceptT,
     mapExceptT,
+    withExceptT,
     module Control.Monad,
     module Control.Monad.Fix,
     module Control.Monad.Trans,
@@ -50,10 +53,20 @@ module Control.Monad.Except (
 
 import Control.Monad.Except.Class
 import Control.Monad.Trans
-import Control.Monad.Trans.Except (ExceptT(..), runExceptT, mapExceptT)
+import Control.Monad.Trans.Except (ExceptT(..), runExceptT, mapExceptT, withExceptT)
 
 import Control.Monad
 import Control.Monad.Fix
+
+-- | 'MonadError' analogue to the 'Control.Exception.try' function.
+tryError :: (MonadError m) => m a -> m (Either (ErrorType m) a)
+tryError action = (Right <$> action) `catchError` (pure . Left)
+
+-- | 'MonadError' analogue to the 'withExceptT' function.
+-- Modify the value (but not the type) of an error.
+-- The type is fixed because of the 'ErrorType' type family.
+withError :: (MonadError m) => (ErrorType m -> ErrorType m) -> m a -> m a
+withError f action = tryError action >>= either (throwError . f) pure
 
 {- $customErrorExample
 Here is an example that demonstrates the use of a custom 'Error' data type with
