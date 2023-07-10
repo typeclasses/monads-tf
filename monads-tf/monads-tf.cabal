@@ -1,21 +1,18 @@
+cabal-version: 3.0
+
 name:         monads-tf
 version:      0.1.0.3
-license:      BSD3
+license:      BSD-3-Clause
 license-file: LICENSE
 author:       Andy Gill
 maintainer:   Ross Paterson <ross@soi.city.ac.uk>
 category:     Control
 synopsis:     Monad classes, using type families
 description:
-    Monad classes using type families, with instances for various
-    monad transformers, inspired by the paper /Functional Programming
-    with Overloading and Higher-Order Polymorphism/, by Mark P
-    Jones, in /Advanced School of Functional Programming/, 1995
-    (<http://web.cecs.pdx.edu/~mpj/pubs/springschool.html>).
-    .
-    This package is almost a compatible replacement for the @mtl-tf@ package.
-build-type: Simple
-cabal-version: >= 1.2.3
+    Monad classes using type families, with instances for
+    various monad transformers.
+
+extra-source-files: *.md
 
 library
   exposed-modules:
@@ -41,7 +38,8 @@ library
     Control.Monad.Writer.Lazy
     Control.Monad.Writer.Strict
   build-depends: base < 6, transformers >= 0.2.0.0 && < 0.6
-  extensions:
-    FlexibleContexts
+  default-extensions:
     TypeFamilies
-  exposed: False
+  default-language: GHC2021
+  ghc-options: -Wall
+  hs-source-dirs: .
