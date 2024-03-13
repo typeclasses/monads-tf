@@ -7,7 +7,7 @@ common base
   default-language: GHC2021
   ghc-options: -Wall
   build-depends:
-    , base ^>= 4.16 || ^>= 4.17 || ^>= 4.18
+    , base ^>= 4.16 || ^>= 4.17 || ^>= 4.18 || ^>= 4.19
     , monads-tf
   default-extensions:
     TypeFamilies
