@@ -43,6 +43,7 @@ library
     , transformers ^>= 0.5.6 || ^>= 0.6
   default-extensions:
     TypeFamilies
+    Safe
   default-language: GHC2021
   ghc-options: -Wall
   hs-source-dirs: .
