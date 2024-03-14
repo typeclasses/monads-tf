@@ -9,14 +9,20 @@
 -- Stability   :  experimental
 -- Portability :  non-portable (type families)
 --
--- State monads.
+-- = State monads
 --
---      This module is inspired by the paper
---      /Functional Programming with Overloading and
---          Higher-Order Polymorphism/,
---        Mark P Jones (<http://web.cecs.pdx.edu/~mpj/>)
---          Advanced School of Functional Programming, 1995.
-
+-- [Computation type:] Computation that has access to a modifiable state.
+--
+-- [Binding strategy:] Monad values are functions that receive a state and
+-- return the modified state along with the value. The bound function is applied
+-- to the modified state returned by the bound value.
+--
+-- [Useful for:] Algorithms that require modifiable state.
+--
+-- [Zero and plus:] None.
+--
+-- [Example type:] @'State' s a@
+--
 -----------------------------------------------------------------------------
 
 module Control.Monad.State (

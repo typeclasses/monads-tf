@@ -9,13 +9,12 @@
 -- Stability   :  experimental
 -- Portability :  non-portable (type families)
 --
--- Strict state monads.
+-- = Strict state monads
 --
---      This module is inspired by the paper
---      /Functional Programming with Overloading and
---          Higher-Order Polymorphism/,
---        Mark P Jones (<http://web.cecs.pdx.edu/~mpj/>)
---          Advanced School of Functional Programming, 1995.
+-- This module is inspired by the paper
+-- /Functional Programming with Overloading and Higher-Order Polymorphism/,
+--   Mark P Jones (<https://web.cecs.pdx.edu/~mpj/pubs/springschool.html>)
+--     Advanced School of Functional Programming, 1995.
 
 -----------------------------------------------------------------------------
 
@@ -23,6 +22,7 @@ module Control.Monad.State.Strict (
     -- * MonadState class
     MonadState(..),
     modify,
+    modify',
     gets,
     -- * The State monad
     State,
@@ -32,33 +32,30 @@ module Control.Monad.State.Strict (
     mapState,
     withState,
     -- * The StateT monad transformer
-    StateT(..),
+    StateT(StateT),
+    runStateT,
     evalStateT,
     execStateT,
     mapStateT,
     withStateT,
-    module Control.Monad,
-    module Control.Monad.Fix,
     module Control.Monad.Trans,
     -- * Examples
     -- $examples
   ) where
 
 import Control.Monad.State.Class
+    (MonadState(..), modify, modify', gets)
 
 import Control.Monad.Trans
 import Control.Monad.Trans.State.Strict
         (State, runState, evalState, execState, mapState, withState,
-         StateT(..), evalStateT, execStateT, mapStateT, withStateT)
-
-import Control.Monad
-import Control.Monad.Fix
+         StateT(StateT), runStateT, evalStateT, execStateT, mapStateT, withStateT)
 
 -- ---------------------------------------------------------------------------
 -- $examples
 -- A function to increment a counter.  Taken from the paper
 -- /Generalising Monads to Arrows/, John
--- Hughes (<http://www.math.chalmers.se/~rjmh/>), November 1998:
+-- Hughes (<https://www.cse.chalmers.se/~rjmh/Papers/arrows.pdf>), November 1998:
 --
 -- > tick :: State Int Int
 -- > tick = do n <- get
@@ -76,7 +73,7 @@ import Control.Monad.Fix
 -- > plus n x = execState (sequence $ replicate n tick) x
 --
 -- An example from /The Craft of Functional Programming/, Simon
--- Thompson (<http://www.cs.kent.ac.uk/people/staff/sjt/>),
+-- Thompson (<https://kar.kent.ac.uk/30749/1/craft3e.pdf>),
 -- Addison-Wesley 1999: \"Given an arbitrary tree, transform it to a
 -- tree of integers in which the original elements are replaced by
 -- natural numbers, starting from 0.  The same element has to be
