@@ -33,7 +33,9 @@ version of that monad.
 -}
 
 module Control.Monad.Identity (
-    module Data.Functor.Identity
+    module Data.Functor.Identity,
+    module Control.Monad.Trans.Identity,
    ) where
 
 import Data.Functor.Identity
+import Control.Monad.Trans.Identity
