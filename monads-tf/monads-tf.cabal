@@ -20,6 +20,7 @@ tested-with: GHC ==9.2.8 || ==9.4.8 || ==9.6.4 || ==9.8.2
 
 library
   exposed-modules:
+    Control.Monad.Accum
     Control.Monad.Cont
     Control.Monad.Cont.Class
     Control.Monad.Except
