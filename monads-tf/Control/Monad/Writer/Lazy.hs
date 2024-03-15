@@ -12,39 +12,31 @@
 -- Lazy writer monads.
 --
 --      Inspired by the paper
---      /Functional Programming with Overloading and
---          Higher-Order Polymorphism/,
+--      /Functional Programming with Overloading and Higher-Order Polymorphism/,
 --        Mark P Jones (<http://web.cecs.pdx.edu/~mpj/pubs/springschool.html>)
 --          Advanced School of Functional Programming, 1995.
 -----------------------------------------------------------------------------
 
 module Control.Monad.Writer.Lazy (
     -- * MonadWriter class
-    MonadWriter(..),
-    listens,
-    censor,
+    MonadWriter.MonadWriter(..),
+    MonadWriter.listens,
+    MonadWriter.censor,
     -- * The Writer monad
     Writer,
     runWriter,
     execWriter,
     mapWriter,
     -- * The WriterT monad transformer
-    WriterT(..),
+    WriterT(WriterT),
+    runWriterT,
     execWriterT,
     mapWriterT,
-    module Control.Monad,
-    module Control.Monad.Fix,
     module Control.Monad.Trans,
-    module Data.Monoid,
   ) where
 
-import Control.Monad.Writer.Class
-
+import Control.Monad.Writer.Class qualified as MonadWriter
 import Control.Monad.Trans
 import Control.Monad.Trans.Writer.Lazy (
         Writer, runWriter, execWriter, mapWriter,
-        WriterT(..), execWriterT, mapWriterT)
-
-import Control.Monad
-import Control.Monad.Fix
-import Data.Monoid
+        WriterT(WriterT), runWriterT, execWriterT, mapWriterT)

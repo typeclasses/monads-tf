@@ -39,6 +39,7 @@ library
     Control.Monad.Trans
     Control.Monad.Writer
     Control.Monad.Writer.Class
+    Control.Monad.Writer.CPS
     Control.Monad.Writer.Lazy
     Control.Monad.Writer.Strict
   build-depends:
