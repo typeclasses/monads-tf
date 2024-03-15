@@ -18,10 +18,9 @@ other values are used as inputs to the bound function.
 [Useful for:] Building computations from sequences of functions that may fail
 or using exception handling to structure error handling.
 
-[Zero and plus:] Zero is represented by an empty error and the plus operation
-executes its second argument if the first fails.
+[Zero and plus:] None.
 
-[Example type:] @'Data.Either' String a@
+[Example type:] @'Either' String a@
 
 The Error monad (also called the Exception monad).
 -}
@@ -31,19 +30,27 @@ The Error monad (also called the Exception monad).
   inspired by the Haskell Monad Template Library from
     Andy Gill (<http://web.cecs.pdx.edu/~andy/>)
 -}
-module Control.Monad.Except (
+module Control.Monad.Except
+  (
+    -- * Warning
+    -- $warning
     -- * Monads with error handling
-    MonadError(..),
-    tryError,
-    withError,
+    Error.MonadError(..),
+    Error.liftEither,
+    Error.tryError,
+    Error.withError,
+    Error.handleError,
+    Error.mapError,
+    Error.modifyError,
     -- * The ExceptT monad transformer
-    ExceptT(..),
-    runExceptT,
-    mapExceptT,
-    withExceptT,
-    module Control.Monad,
-    module Control.Monad.Fix,
-    module Control.Monad.Trans,
+    Except.ExceptT(ExceptT),
+    Except.Except,
+    Except.runExceptT,
+    Except.mapExceptT,
+    Except.withExceptT,
+    Except.runExcept,
+    Except.mapExcept,
+    Except.withExcept,
     -- * Example 1: Custom Error Data Type
     -- $customErrorExample
 
@@ -51,25 +58,23 @@ module Control.Monad.Except (
     -- $ExceptTExample
   ) where
 
-import Control.Monad.Except.Class
-import Control.Monad.Trans
-import Control.Monad.Trans.Except (ExceptT(..), runExceptT, mapExceptT, withExceptT)
+import Control.Monad.Error.Class qualified as Error
+import Control.Monad.Trans.Except qualified as Except
 
-import Control.Monad
-import Control.Monad.Fix
+{- $warning
+Please do not confuse 'ExceptT' and 'throwError' with 'Control.Exception.Exception' /
+'Control.Exception.SomeException' and 'Control.Exception.catch', respectively. The latter
+are for exceptions built into GHC, by default, and are mostly used from within the IO monad.
+They do not interact with the \"exceptions\" in this package at all. This package allows you
+to define a new kind of exception control mechanism which does not necessarily need your code to
+be placed in the IO monad.
 
--- | 'MonadError' analogue to the 'Control.Exception.try' function.
-tryError :: (MonadError m) => m a -> m (Either (ErrorType m) a)
-tryError action = (Right <$> action) `catchError` (pure . Left)
-
--- | 'MonadError' analogue to the 'withExceptT' function.
--- Modify the value (but not the type) of an error.
--- The type is fixed because of the 'ErrorType' type family.
-withError :: (MonadError m) => (ErrorType m -> ErrorType m) -> m a -> m a
-withError f action = tryError action >>= either (throwError . f) pure
+In short, all \"catching\" mechanisms in this library will be unable to catch exceptions thrown
+by functions in the "Control.Exception" module, and vice-versa.
+-}
 
 {- $customErrorExample
-Here is an example that demonstrates the use of a custom 'Error' data type with
+Here is an example that demonstrates the use of a custom error data type with
 the 'throwError' and 'catchError' exception mechanism from 'MonadError'.
 The example throws an exception if the user enters an empty string
 or a string longer than 5 characters. Otherwise it prints length of the string.
@@ -97,15 +102,15 @@ or a string longer than 5 characters. Otherwise it prints length of the string.
 >main = do
 >  putStrLn "Please enter a string:"
 >  s <- getLine
->  reportResult (calculateLengthOrFail s)
+>  reportResult (calculateLength s)
 >
 >-- Attempts to calculate length and throws an error if the provided string is
 >-- empty or longer than 5 characters.
->-- The processing is done in Either monad.
->calculateLengthOrFail :: String -> LengthMonad Int
->calculateLengthOrFail [] = throwError EmptyString
->calculateLengthOrFail s | len > 5 = throwError (StringTooLong len)
->                        | otherwise = return len
+>-- (Throwing an error in this monad means returning a 'Left'.)
+>calculateLength :: String -> LengthMonad Int
+>calculateLength [] = throwError EmptyString
+>calculateLength s | len > 5 = throwError (StringTooLong len)
+>                  | otherwise = return len
 >  where len = length s
 >
 >-- Prints result of the string length calculation.
@@ -115,7 +120,7 @@ or a string longer than 5 characters. Otherwise it prints length of the string.
 -}
 
 {- $ExceptTExample
-@'ErrorT'@ monad transformer can be used to add error handling to another monad.
+@'ExceptT'@ monad transformer can be used to add error handling to another monad.
 Here is an example how to combine it with an @IO@ monad:
 
 >import Control.Monad.Except
