@@ -1,4 +1,3 @@
------------------------------------------------------------------------------
 -- |
 -- Module      :  Control.Monad.RWS.Lazy
 -- Copyright   :  (c) Andy Gill 2001,
@@ -15,10 +14,8 @@
 --      /Functional Programming with Overloading and Higher-Order Polymorphism/,
 --        Mark P Jones (<http://web.cecs.pdx.edu/~mpj/>)
 --          Advanced School of Functional Programming, 1995.
------------------------------------------------------------------------------
-
-module Control.Monad.RWS.Lazy (
-    -- * The RWS monad
+module Control.Monad.RWS.Lazy
+  ( -- * The RWS monad
     RWS,
     rws,
     runRWS,
@@ -26,21 +23,35 @@ module Control.Monad.RWS.Lazy (
     execRWS,
     mapRWS,
     withRWS,
+
     -- * The RWST monad transformer
-    RWST(RWST),
+    RWST (RWST),
     runRWST,
     evalRWST,
     execRWST,
     mapRWST,
     withRWST,
+
     -- * Lazy Reader-writer-state monads
     module Control.Monad.RWS.Class,
     module Control.Monad.Trans,
-  ) where
+  )
+where
 
 import Control.Monad.RWS.Class
-
 import Control.Monad.Trans
-import Control.Monad.Trans.RWS.Lazy (
-    RWS, rws, runRWS, evalRWS, execRWS, mapRWS, withRWS,
-    RWST(RWST), runRWST, evalRWST, execRWST, mapRWST, withRWST)
+import Control.Monad.Trans.RWS.Lazy
+  ( RWS,
+    RWST (RWST),
+    evalRWS,
+    evalRWST,
+    execRWS,
+    execRWST,
+    mapRWS,
+    mapRWST,
+    runRWS,
+    runRWST,
+    rws,
+    withRWS,
+    withRWST,
+  )

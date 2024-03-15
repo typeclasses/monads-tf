@@ -1,4 +1,3 @@
------------------------------------------------------------------------------
 -- |
 -- Module      :  Control.Monad.Writer
 -- Copyright   :  (c) Andy Gill 2001,
@@ -28,10 +27,9 @@
 --      /Functional Programming with Overloading and Higher-Order Polymorphism/,
 --        Mark P Jones (<http://web.cecs.pdx.edu/~mpj/pubs/springschool.html>)
 --          Advanced School of Functional Programming, 1995.
------------------------------------------------------------------------------
-
-module Control.Monad.Writer (
-    module Control.Monad.Writer.Lazy
-  ) where
+module Control.Monad.Writer
+  ( module Control.Monad.Writer.Lazy,
+  )
+where
 
 import Control.Monad.Writer.Lazy

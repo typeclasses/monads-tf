@@ -1,4 +1,3 @@
------------------------------------------------------------------------------
 -- |
 -- Module      :  Control.Monad.State
 -- Copyright   :  (c) Andy Gill 2001,
@@ -22,11 +21,9 @@
 -- [Zero and plus:] None.
 --
 -- [Example type:] @'State' s a@
---
------------------------------------------------------------------------------
-
-module Control.Monad.State (
-  module Control.Monad.State.Lazy
-  ) where
+module Control.Monad.State
+  ( module Control.Monad.State.Lazy,
+  )
+where
 
 import Control.Monad.State.Lazy

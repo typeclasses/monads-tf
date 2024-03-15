@@ -1,4 +1,3 @@
------------------------------------------------------------------------------
 -- |
 -- Module      :  Control.Monad.State.Lazy
 -- Copyright   :  (c) Andy Gill 2001,
@@ -15,15 +14,13 @@
 -- /Functional Programming with Overloading and Higher-Order Polymorphism/,
 --   Mark P Jones (<https://web.cecs.pdx.edu/~mpj/pubs/springschool.html>)
 --     Advanced School of Functional Programming, 1995.
-
------------------------------------------------------------------------------
-
-module Control.Monad.State.Lazy (
-    -- * MonadState class
-    MonadState(..),
+module Control.Monad.State.Lazy
+  ( -- * MonadState class
+    MonadState (..),
     modify,
     modify',
     gets,
+
     -- * The State monad
     State,
     runState,
@@ -31,27 +28,45 @@ module Control.Monad.State.Lazy (
     execState,
     mapState,
     withState,
+
     -- * The StateT monad transformer
-    StateT(StateT),
+    StateT (StateT),
     runStateT,
     evalStateT,
     execStateT,
     mapStateT,
     withStateT,
     module Control.Monad.Trans,
+
     -- * Examples
     -- $examples
-  ) where
+  )
+where
 
 import Control.Monad.State.Class
-    (MonadState(..), modify, modify', gets)
-
+  ( MonadState (..),
+    gets,
+    modify,
+    modify',
+  )
 import Control.Monad.Trans
 import Control.Monad.Trans.State.Lazy
-        (State, runState, evalState, execState, mapState, withState,
-         StateT(StateT), runStateT, evalStateT, execStateT, mapStateT, withStateT)
+  ( State,
+    StateT (StateT),
+    evalState,
+    evalStateT,
+    execState,
+    execStateT,
+    mapState,
+    mapStateT,
+    runState,
+    runStateT,
+    withState,
+    withStateT,
+  )
 
 -- ---------------------------------------------------------------------------
+
 -- $examples
 -- A function to increment a counter.  Taken from the paper
 -- /Generalising Monads to Arrows/, John

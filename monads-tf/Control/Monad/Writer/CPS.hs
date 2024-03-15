@@ -1,4 +1,3 @@
------------------------------------------------------------------------------
 -- |
 -- Module      :  Control.Monad.Writer.Strict
 -- Copyright   :  (c) Andy Gill 2001,
@@ -18,27 +17,34 @@
 --          Advanced School of Functional Programming, 1995.
 --
 -- /Since: monads-tf-0.4.0.0, transformers-0.5.6/
------------------------------------------------------------------------------
-
-module Control.Monad.Writer.CPS (
-    -- * MonadWriter class
-    MonadWriter.MonadWriter(..),
+module Control.Monad.Writer.CPS
+  ( -- * MonadWriter class
+    MonadWriter.MonadWriter (..),
     MonadWriter.listens,
     MonadWriter.censor,
+
     -- * The Writer monad
     Writer,
     runWriter,
     execWriter,
     mapWriter,
+
     -- * The WriterT monad transformer
     WriterT,
     execWriterT,
     mapWriterT,
     module Control.Monad.Trans,
-  ) where
+  )
+where
 
-import qualified Control.Monad.Writer.Class as MonadWriter
 import Control.Monad.Trans
-import Control.Monad.Trans.Writer.CPS (
-        Writer, runWriter, execWriter, mapWriter,
-        WriterT, execWriterT, mapWriterT)
+import Control.Monad.Trans.Writer.CPS
+  ( Writer,
+    WriterT,
+    execWriter,
+    execWriterT,
+    mapWriter,
+    mapWriterT,
+    runWriter,
+  )
+import Control.Monad.Writer.Class qualified as MonadWriter

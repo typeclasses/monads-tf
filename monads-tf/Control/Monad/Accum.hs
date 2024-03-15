@@ -76,22 +76,22 @@ module Control.Monad.Accum
 where
 
 import Control.Monad.Trans.Accum (AccumT)
-import qualified Control.Monad.Trans.Accum as Accum
+import Control.Monad.Trans.Accum qualified as Accum
 import Control.Monad.Trans.Class (MonadTrans (lift))
 import Control.Monad.Trans.Cont (ContT)
 import Control.Monad.Trans.Except (ExceptT)
 import Control.Monad.Trans.Identity (IdentityT)
 import Control.Monad.Trans.Maybe (MaybeT)
-import qualified Control.Monad.Trans.RWS.CPS as CPSRWS
-import qualified Control.Monad.Trans.RWS.Lazy as LazyRWS
-import qualified Control.Monad.Trans.RWS.Strict as StrictRWS
+import Control.Monad.Trans.RWS.CPS qualified as CPSRWS
+import Control.Monad.Trans.RWS.Lazy qualified as LazyRWS
+import Control.Monad.Trans.RWS.Strict qualified as StrictRWS
 import Control.Monad.Trans.Reader (ReaderT)
 import Control.Monad.Trans.Select (SelectT)
-import qualified Control.Monad.Trans.State.Lazy as LazyState
-import qualified Control.Monad.Trans.State.Strict as StrictState
-import qualified Control.Monad.Trans.Writer.CPS as CPSWriter
-import qualified Control.Monad.Trans.Writer.Lazy as LazyWriter
-import qualified Control.Monad.Trans.Writer.Strict as StrictWriter
+import Control.Monad.Trans.State.Lazy qualified as LazyState
+import Control.Monad.Trans.State.Strict qualified as StrictState
+import Control.Monad.Trans.Writer.CPS qualified as CPSWriter
+import Control.Monad.Trans.Writer.Lazy qualified as LazyWriter
+import Control.Monad.Trans.Writer.Strict qualified as StrictWriter
 import Data.Functor (($>))
 import Data.Functor.Identity (Identity)
 import Data.Kind (Type)
@@ -247,7 +247,6 @@ instance (MonadAccum m) => MonadAccum (CPSWriter.WriterT w m) where
   look = lift look
   add = lift . add
   accum = lift . accum
-
 
 -- | @since 0.4.0.0
 instance (MonadAccum m, Monoid w) => MonadAccum (LazyWriter.WriterT w m) where

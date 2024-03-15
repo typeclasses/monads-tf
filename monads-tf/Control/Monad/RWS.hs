@@ -1,4 +1,3 @@
------------------------------------------------------------------------------
 -- |
 -- Module      :  Control.Monad.RWS
 -- Copyright   :  (c) Andy Gill 2001,
@@ -15,10 +14,9 @@
 --      /Functional Programming with Overloading and Higher-Order Polymorphism/,
 --        Mark P Jones (<http://web.cecs.pdx.edu/~mpj/>)
 --          Advanced School of Functional Programming, 1995.
------------------------------------------------------------------------------
-
-module Control.Monad.RWS (
-    module Control.Monad.RWS.Lazy
-  ) where
+module Control.Monad.RWS
+  ( module Control.Monad.RWS.Lazy,
+  )
+where
 
 import Control.Monad.RWS.Lazy

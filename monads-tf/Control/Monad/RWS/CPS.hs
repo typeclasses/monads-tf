@@ -1,4 +1,3 @@
------------------------------------------------------------------------------
 -- |
 -- Module      :  Control.Monad.RWS.Strict
 -- Copyright   :  (c) Andy Gill 2001,
@@ -18,10 +17,8 @@
 --          Advanced School of Functional Programming, 1995.
 --
 -- /Since: monads-tf-0.4.0.0, transformers-0.5.6/
------------------------------------------------------------------------------
-
-module Control.Monad.RWS.CPS (
-    -- * The RWS monad
+module Control.Monad.RWS.CPS
+  ( -- * The RWS monad
     RWS,
     rws,
     runRWS,
@@ -29,6 +26,7 @@ module Control.Monad.RWS.CPS (
     execRWS,
     mapRWS,
     withRWS,
+
     -- * The RWST monad transformer
     RWST,
     runRWST,
@@ -36,14 +34,27 @@ module Control.Monad.RWS.CPS (
     execRWST,
     mapRWST,
     withRWST,
+
     -- * Strict Reader-writer-state monads
     module Control.Monad.RWS.Class,
     module Control.Monad.Trans,
-  ) where
+  )
+where
 
 import Control.Monad.RWS.Class
-
 import Control.Monad.Trans
-import Control.Monad.Trans.RWS.CPS (
-    RWS, rws, runRWS, evalRWS, execRWS, mapRWS, withRWS,
-    RWST, runRWST, evalRWST, execRWST, mapRWST, withRWST)
+import Control.Monad.Trans.RWS.CPS
+  ( RWS,
+    RWST,
+    evalRWS,
+    evalRWST,
+    execRWS,
+    execRWST,
+    mapRWS,
+    mapRWST,
+    runRWS,
+    runRWST,
+    rws,
+    withRWS,
+    withRWST,
+  )
