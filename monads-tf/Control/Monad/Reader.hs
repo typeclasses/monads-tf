@@ -30,27 +30,25 @@ Using 'Reader' monad for such computations is often clearer and easier
 than using the 'Control.Monad.State.State' monad.
 
   Inspired by the paper
-  /Functional Programming with Overloading and
-      Higher-Order Polymorphism/, 
+  /Functional Programming with Overloading and Higher-Order Polymorphism/,
     Mark P Jones (<http://web.cecs.pdx.edu/~mpj/>)
     Advanced School of Functional Programming, 1995.
 -}
 
 module Control.Monad.Reader (
     -- * MonadReader class
-    MonadReader(..),
-    asks,
+    MonadReader.MonadReader(..),
+    MonadReader.asks,
     -- * The Reader monad
     Reader,
     runReader,
     mapReader,
     withReader,
     -- * The ReaderT monad transformer
-    ReaderT(..),
+    ReaderT(ReaderT),
+    runReaderT,
     mapReaderT,
     withReaderT,
-    module Control.Monad,
-    module Control.Monad.Fix,
     module Control.Monad.Trans,
     -- * Example 1: Simple Reader Usage
     -- $simpleReaderExample
@@ -62,15 +60,12 @@ module Control.Monad.Reader (
     -- $ReaderTExample
     ) where
 
-import Control.Monad.Reader.Class
+import Control.Monad.Reader.Class qualified as MonadReader
+import Control.Monad.Trans
 
 import Control.Monad.Trans.Reader (
     Reader, runReader, mapReader, withReader,
-    ReaderT(..), mapReaderT, withReaderT)
-import Control.Monad.Trans
-
-import Control.Monad
-import Control.Monad.Fix
+    ReaderT(ReaderT), runReaderT, mapReaderT, withReaderT)
 
 {- $simpleReaderExample
 
@@ -80,7 +75,11 @@ The variable @count@ contains number of variables in the bindings.
 You can see how to run a Reader monad and retrieve data from it
 with 'runReader', how to access the Reader data with 'ask' and 'asks'.
 
-> type Bindings = Map String Int;
+>import Control.Monad.Reader
+>import Data.Map (Map)
+>import Data.Map qualified as Map
+>
+>type Bindings = Map String Int
 >
 >-- Returns True if the "count" variable contains correct bindings size.
 >isCountCorrect :: Bindings -> Bool
@@ -93,22 +92,26 @@ with 'runReader', how to access the Reader data with 'ask' and 'asks'.
 >    bindings <- ask
 >    return (count == (Map.size bindings))
 >
->-- The selector function to  use with 'asks'.
+>-- The selector function to use with 'asks'.
 >-- Returns value of the variable with specified name.
 >lookupVar :: String -> Bindings -> Int
->lookupVar name bindings = fromJust (Map.lookup name bindings)
+>lookupVar name bindings = maybe 0 id (Map.lookup name bindings)
 >
->sampleBindings = Map.fromList [("count",3), ("1",1), ("b",2)]
+>sampleBindings :: Bindings
+>sampleBindings = Map.fromList [("count", 3), ("1", 1), ("b", 2)]
 >
+>main :: IO ()
 >main = do
->    putStr $ "Count is correct for bindings " ++ (show sampleBindings) ++ ": ";
->    putStrLn $ show (isCountCorrect sampleBindings);
+>    putStr $ "Count is correct for bindings " ++ (show sampleBindings) ++ ": "
+>    putStrLn $ show (isCountCorrect sampleBindings)
 -}
 
 {- $localExample
 
 Shows how to modify Reader content with 'local'.
 
+>import Control.Monad.Reader
+>
 >calculateContentLen :: Reader String Int
 >calculateContentLen = do
 >    content <- ask
@@ -118,6 +121,7 @@ Shows how to modify Reader content with 'local'.
 >calculateModifiedContentLen :: Reader String Int
 >calculateModifiedContentLen = local ("Prefix " ++) calculateContentLen
 >
+>main :: IO ()
 >main = do
 >    let s = "12345";
 >    let modifiedLen = runReader calculateModifiedContentLen s
@@ -130,15 +134,17 @@ Shows how to modify Reader content with 'local'.
 
 Now you are thinking: 'Wow, what a great monad! I wish I could use
 Reader functionality in MyFavoriteComplexMonad!'. Don't worry.
-This can be easy done with the 'ReaderT' monad transformer.
+This can be easily done with the 'ReaderT' monad transformer.
 This example shows how to combine @ReaderT@ with the IO monad.
 
+>import Control.Monad.Reader
+>
 >-- The Reader/IO combined monad, where Reader stores a string.
 >printReaderContent :: ReaderT String IO ()
 >printReaderContent = do
 >    content <- ask
 >    liftIO $ putStrLn ("The Reader Content: " ++ content)
 >
->main = do
->    runReaderT printReaderContent "Some Content"
+>main :: IO ()
+>main = runReaderT printReaderContent "Some Content"
 -}
