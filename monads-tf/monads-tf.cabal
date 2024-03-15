@@ -28,6 +28,7 @@ library
     Control.Monad.Identity
     Control.Monad.RWS
     Control.Monad.RWS.Class
+    Control.Monad.RWS.CPS
     Control.Monad.RWS.Lazy
     Control.Monad.RWS.Strict
     Control.Monad.Reader

@@ -13,8 +13,7 @@
 -- Declaration of the MonadRWS class.
 --
 --      Inspired by the paper
---      /Functional Programming with Overloading and
---          Higher-Order Polymorphism/,
+--      /Functional Programming with Overloading and Higher-Order Polymorphism/,
 --        Mark P Jones (<http://web.cecs.pdx.edu/~mpj/>)
 --          Advanced School of Functional Programming, 1995.
 -----------------------------------------------------------------------------
@@ -30,21 +29,25 @@ import Control.Monad.Reader.Class
 import Control.Monad.State.Class
 import Control.Monad.Writer.Class
 
-import Control.Monad.Trans.Except(ExceptT)
-import Control.Monad.Trans.Maybe(MaybeT)
-import Control.Monad.Trans.Identity(IdentityT)
-import Control.Monad.Trans.RWS.Lazy as Lazy (RWST)
-import qualified Control.Monad.Trans.RWS.Strict as Strict (RWST)
+import Control.Monad.Trans.Except (ExceptT)
+import Control.Monad.Trans.Maybe (MaybeT)
+import Control.Monad.Trans.Identity (IdentityT)
+import Control.Monad.Trans.RWS.CPS qualified as CPS (RWST)
+import Control.Monad.Trans.RWS.Lazy qualified as Lazy (RWST)
+import Control.Monad.Trans.RWS.Strict qualified as Strict (RWST)
 
 class (Monoid (WriterType m), MonadReader m, MonadWriter m, MonadState m) =>
     MonadRWS m
+
+-- | @since 0.4.0.0
+instance (Monoid w, Monad m) => MonadRWS (CPS.RWST r w s m)
 
 instance (Monoid w, Monad m) => MonadRWS (Lazy.RWST r w s m)
 
 instance (Monoid w, Monad m) => MonadRWS (Strict.RWST r w s m)
 
 ---------------------------------------------------------------------------
--- Instances for other mtl transformers
+-- Instances for other transformers
 
 instance (MonadRWS m) => MonadRWS (ExceptT e m)
 
