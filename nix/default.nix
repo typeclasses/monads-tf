@@ -24,9 +24,10 @@ let
           # transformers = new.callHackage "transformers" "0.5.6.2" { };
         };
     };
+    ghc-9-8 = makeTestConfiguration { ghc = pkgs.haskell.packages.ghc98; };
     all = pkgs.symlinkJoin {
       name = "monads-tf-tests";
-      paths = [ ghc-9-2 ghc-9-4 ghc-9-6 ];
+      paths = [ ghc-9-2 ghc-9-4 ghc-9-6 ghc-9-8 ];
     };
   };
 

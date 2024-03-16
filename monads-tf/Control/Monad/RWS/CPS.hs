@@ -8,13 +8,16 @@
 -- Stability   :  experimental
 -- Portability :  non-portable (type families)
 --
--- Strict RWS monad.
+-- Strict RWS monad that uses continuation-passing-style to achieve constant
+-- space usage.
 --
 --      Inspired by the paper
 --      /Functional Programming with Overloading and Higher-Order Polymorphism/,
 --        Mark P Jones (<http://web.cecs.pdx.edu/~mpj/>)
 --          Advanced School of Functional Programming, 1995.
-module Control.Monad.RWS.Strict
+--
+-- /Since: monads-tf-0.4.0.0, transformers-0.5.6/
+module Control.Monad.RWS.CPS
   ( -- * The RWS monad
     RWS,
     rws,
@@ -25,7 +28,7 @@ module Control.Monad.RWS.Strict
     withRWS,
 
     -- * The RWST monad transformer
-    RWST (RWST),
+    RWST,
     runRWST,
     evalRWST,
     execRWST,
@@ -40,9 +43,9 @@ where
 
 import Control.Monad.RWS.Class
 import Control.Monad.Trans
-import Control.Monad.Trans.RWS.Strict
+import Control.Monad.Trans.RWS.CPS
   ( RWS,
-    RWST (RWST),
+    RWST,
     evalRWS,
     evalRWST,
     execRWS,

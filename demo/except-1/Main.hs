@@ -1,16 +1,17 @@
 import Control.Monad.Except
 
 -- This is the type to represent length calculation error.
-data LengthError = EmptyString  -- Entered string was empty.
-          | StringTooLong Int   -- A string is longer than 5 characters.
-                                -- Records a length of the string.
-          | OtherError String   -- Other error, stores the problem description.
+data LengthError
+  = EmptyString -- Entered string was empty.
+  | StringTooLong Int -- A string is longer than 5 characters.
+  -- Records a length of the string.
+  | OtherError String -- Other error, stores the problem description.
 
 -- Converts LengthError to a readable message.
 instance Show LengthError where
   show EmptyString = "The string was empty!"
   show (StringTooLong len) =
-      "The length of the string (" ++ (show len) ++ ") is bigger than 5!"
+    "The length of the string (" ++ (show len) ++ ") is bigger than 5!"
   show (OtherError msg) = msg
 
 -- For our monad type constructor, we use Either LengthError
@@ -29,9 +30,11 @@ main = do
 -- The processing is done in Either monad.
 calculateLengthOrFail :: String -> LengthMonad Int
 calculateLengthOrFail [] = throwError EmptyString
-calculateLengthOrFail s | len > 5 = throwError (StringTooLong len)
-                        | otherwise = return len
-  where len = length s
+calculateLengthOrFail s
+  | len > 5 = throwError (StringTooLong len)
+  | otherwise = return len
+  where
+    len = length s
 
 -- Prints result of the string length calculation.
 reportResult :: LengthMonad Int -> IO ()

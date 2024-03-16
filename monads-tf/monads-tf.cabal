@@ -1,7 +1,7 @@
 cabal-version: 3.0
 
 name:         monads-tf
-version:      0.3.0.1
+version:      0.4.0.0
 license:      BSD-3-Clause
 license-file: LICENSE
 author:       Andy Gill
@@ -16,15 +16,19 @@ description:
 
 extra-source-files: *.md
 
+tested-with: GHC ==9.2.8 || ==9.4.8 || ==9.6.4 || ==9.8.2
+
 library
   exposed-modules:
+    Control.Monad.Accum
     Control.Monad.Cont
     Control.Monad.Cont.Class
     Control.Monad.Except
-    Control.Monad.Except.Class
+    Control.Monad.Error.Class
     Control.Monad.Identity
     Control.Monad.RWS
     Control.Monad.RWS.Class
+    Control.Monad.RWS.CPS
     Control.Monad.RWS.Lazy
     Control.Monad.RWS.Strict
     Control.Monad.Reader
@@ -36,13 +40,16 @@ library
     Control.Monad.Trans
     Control.Monad.Writer
     Control.Monad.Writer.Class
+    Control.Monad.Writer.CPS
     Control.Monad.Writer.Lazy
     Control.Monad.Writer.Strict
+    Control.Monad.Select
   build-depends:
-    , base ^>= 4.16 || ^>= 4.17 || ^>= 4.18
+    , base ^>= 4.16 || ^>= 4.17 || ^>= 4.18 || ^>= 4.19
     , transformers ^>= 0.5.6 || ^>= 0.6
   default-extensions:
     TypeFamilies
+    Safe
   default-language: GHC2021
   ghc-options: -Wall
   hs-source-dirs: .

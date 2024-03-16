@@ -1,4 +1,5 @@
 import Control.Monad.Except
+import Control.Monad.IO.Class
 
 -- An IO monad which can return String failure.
 -- It is convenient to define the monad type of the combined monad,

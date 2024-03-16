@@ -1,11 +1,10 @@
------------------------------------------------------------------------------
 -- |
 -- Module      :  Control.Monad.Trans
 -- Copyright   :  (c) Andy Gill 2001,
 --                (c) Oregon Graduate Institute of Science and Technology, 2001
 -- License     :  BSD-style (see the file LICENSE)
 --
--- Maintainer  :  ross@soi.city.ac.uk
+-- Maintainer  :  Chris Martin <chris@typeclasses.com>
 -- Stability   :  experimental
 -- Portability :  portable
 --
@@ -23,12 +22,11 @@
 --
 -- Each monad transformer also comes with an operation @run@/XXX/ to
 -- unwrap the transformer, exposing a computation of the inner monad.
------------------------------------------------------------------------------
-
-module Control.Monad.Trans (
-    module Control.Monad.Trans.Class,
-    module Control.Monad.IO.Class
-  ) where
+module Control.Monad.Trans
+  ( module Control.Monad.Trans.Class,
+    module Control.Monad.IO.Class,
+  )
+where
 
 import Control.Monad.IO.Class
 import Control.Monad.Trans.Class

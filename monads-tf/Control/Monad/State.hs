@@ -1,26 +1,29 @@
------------------------------------------------------------------------------
 -- |
 -- Module      :  Control.Monad.State
 -- Copyright   :  (c) Andy Gill 2001,
 --                (c) Oregon Graduate Institute of Science and Technology, 2001
 -- License     :  BSD-style (see the file LICENSE)
 --
--- Maintainer  :  ross@soi.city.ac.uk
+-- Maintainer  :  Chris Martin <chris@typeclasses.com>
 -- Stability   :  experimental
 -- Portability :  non-portable (type families)
 --
--- State monads.
+-- = State monads
 --
---      This module is inspired by the paper
---      /Functional Programming with Overloading and
---          Higher-Order Polymorphism/,
---        Mark P Jones (<http://web.cecs.pdx.edu/~mpj/>)
---          Advanced School of Functional Programming, 1995.
-
------------------------------------------------------------------------------
-
-module Control.Monad.State (
-  module Control.Monad.State.Lazy
-  ) where
+-- [Computation type:] Computation that has access to a modifiable state.
+--
+-- [Binding strategy:] Monad values are functions that receive a state and
+-- return the modified state along with the value. The bound function is applied
+-- to the modified state returned by the bound value.
+--
+-- [Useful for:] Algorithms that require modifiable state.
+--
+-- [Zero and plus:] None.
+--
+-- [Example type:] @'State' s a@
+module Control.Monad.State
+  ( module Control.Monad.State.Lazy,
+  )
+where
 
 import Control.Monad.State.Lazy
