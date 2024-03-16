@@ -4,7 +4,7 @@
 --                (c) Oregon Graduate Institute of Science and Technology, 2001
 -- License     :  BSD-style (see the file LICENSE)
 --
--- Maintainer  :  ch.martin@gmail.com
+-- Maintainer  :  Chris Martin <chris@typeclasses.com>
 -- Stability   :  experimental
 -- Portability :  non-portable (type families)
 --

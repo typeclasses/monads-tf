@@ -12,7 +12,7 @@
 --                (c) Edward Kmett 2012
 -- License     :  BSD-style (see the file LICENSE)
 --
--- Maintainer  :  ross@soi.city.ac.uk
+-- Maintainer  :  Chris Martin <chris@typeclasses.com>
 -- Stability   :  experimental
 -- Portability :  non-portable (type families)
 --

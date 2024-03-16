@@ -6,7 +6,7 @@
 --                (c) Andriy Palamarchuk 2006
 -- License     :  BSD-style (see the file LICENSE)
 --
--- Maintainer  :  ross@soi.city.ac.uk
+-- Maintainer  :  Chris Martin <chris@typeclasses.com>
 -- Stability   :  experimental
 -- Portability :  portable
 --

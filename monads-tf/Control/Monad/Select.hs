@@ -1,7 +1,7 @@
 -- | Module: Control.Monad.Select
 -- Copyright: (C) Koz Ross 2022
 -- License: BSD-3-Clause (see the LICENSE file)
--- Maintainer: koz.ross@retro-freedom.nz
+-- Maintainer: Chris Martin <chris@typeclasses.com>
 -- Stability: Experimental
 -- Portability: GHC only
 --
